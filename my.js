@@ -74,7 +74,7 @@ function createCards (arr){
   // return elements;
  };
 
-function createPostCard({ title, text, img, stats[likes]) {
+function createPostCard({ title, text, img, likes}) {
   const note = document.createElement("div");
   note.classList.add("post");
 
