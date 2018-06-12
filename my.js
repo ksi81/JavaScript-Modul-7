@@ -52,35 +52,35 @@ const posts = [
     }
   }
 ];
+// console.log(posts);
 
 const post = document.querySelector("body");
-const elements = [];
-posts.forEach(note => {
-  const el = createPostCard(note);
-  elements.push(el);
-});
 
-console.log(elements);
-
-// const note = createPostCard();
+const elements = createCards (posts)
 
 post.append(...elements);
 
-// const note = createPostCard({
-//   title : 'khkhkh',
-//   text : '546546464564645'
-// });
-// post.appendChild(note);
 
-// console.log(...elements);
+function createCards (arr){
+  return res = arr.reduce(
+    (acc, el) => acc.concat(createPostCard(el)),
+  []
+);
+    // const elements = [];
+  // arr.forEach(note => {
+  //   const el = createPostCard(note);
+  //   elements.push(el);
+  // });
+  // return elements;
+ };
 
-function createPostCard({ title, text}) {
+function createPostCard({ title, text, img, stats[likes]) {
   const note = document.createElement("div");
   note.classList.add("post");
 
   const postImage = document.createElement("img");
   postImage.classList.add("post__image");
-  postImage.setAttribute("src", "https://placeimg.com/400/150/arch");
+  postImage.setAttribute("src", img);
   // postImage.classList.add('post__image');
 
   const postTitle = document.createElement("h2");
@@ -103,7 +103,7 @@ function createPostCard({ title, text}) {
 
   const actionsBtn = document.createElement("button");
   actionsBtn.classList.add("actions__btn");
-  // editBtn.textContent = 'Editnax';
+ 
 
   const actionsIcon = document.createElement("span");
   actionsIcon.classList.add("actions__icon");
@@ -111,7 +111,7 @@ function createPostCard({ title, text}) {
 
   const actionsCount = document.createElement("span");
   actionsCount.classList.add("actions__count");
-  actionsCount.textContent = "10";
+  actionsCount.textContent = likes;
 
   /// вторая кнопка
   const actionsItem2 = document.createElement("li");
@@ -119,7 +119,7 @@ function createPostCard({ title, text}) {
 
   const actionsBtn2 = document.createElement("button");
   actionsBtn2.classList.add("actions__btn2");
-  // editBtn.textContent = 'Editnax';
+
 
   const actionsIcon2 = document.createElement("span");
   actionsIcon2.classList.add("actions__icon2");
@@ -135,7 +135,7 @@ function createPostCard({ title, text}) {
 
   const actionsBtn3 = document.createElement("button");
   actionsBtn3.classList.add("actions__btn3");
-  // editBtn.textContent = 'Editnax';
+  
 
   const actionsIcon3 = document.createElement("span");
   actionsIcon3.classList.add("actions__icon3");
