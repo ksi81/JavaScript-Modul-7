@@ -56,12 +56,9 @@ const posts = [
 
 const post = document.querySelector("body");
 
-
 // раскомментировать для обычного добавления
 // const elements = createCards(posts);
 // post.append(...elements);
-
-
 
 //закоомментировать для обычного добавления
 const markup = createPostCardLineInner(posts);
@@ -162,20 +159,19 @@ function createPostCard({ title, text, img, likes }) {
   return note;
 }
 
-
-// Задание 1 .....возвращала строку с тегами, которую потом можно будет поставить в документ 
+// Задание 1 .....возвращала строку с тегами, которую потом можно будет поставить в документ
 //  используя innerHTML или insertAdjacentHTML
 
 function createPostCardLineInner(arr) {
-  let markup = '';
+  return arr.reduce((acc, obj) => acc + createPostCardLine(obj), "");
 
-  arr.forEach (note => {
-    const html = createPostCardLine(note);
-    markup += html;
-  });
-  // console.log(markup);
-  return markup;
-  
+  // let markup = '';
+  // arr.forEach (note => {
+  //   const html = createPostCardLine(note);
+  //   markup += html;
+  // });
+  // // console.log(markup);
+  // return markup;
 }
 
 function createPostCardLine({ title, text, img, likes }) {
@@ -208,4 +204,3 @@ function createPostCardLine({ title, text, img, likes }) {
 </div>
   `;
 }
-
