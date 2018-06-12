@@ -56,25 +56,30 @@ const posts = [
 
 const post = document.querySelector("body");
 
-const elements = createCards (posts)
 
-post.append(...elements);
+// раскомментировать для обычного добавления
+// const elements = createCards(posts);
+// post.append(...elements);
 
 
-function createCards (arr){
-  return res = arr.reduce(
-    (acc, el) => acc.concat(createPostCard(el)),
-  []
-);
-    // const elements = [];
+
+//закоомментировать для обычного добавления
+const markup = createPostCardLineInner(posts);
+post.innerHTML = markup;
+
+// function createPostCardLine();
+
+function createCards(arr) {
+  return (res = arr.reduce((acc, el) => acc.concat(createPostCard(el)), []));
+  // const elements = [];
   // arr.forEach(note => {
   //   const el = createPostCard(note);
   //   elements.push(el);
   // });
   // return elements;
- };
+}
 
-function createPostCard({ title, text, img, likes}) {
+function createPostCard({ title, text, img, likes }) {
   const note = document.createElement("div");
   note.classList.add("post");
 
@@ -103,7 +108,6 @@ function createPostCard({ title, text, img, likes}) {
 
   const actionsBtn = document.createElement("button");
   actionsBtn.classList.add("actions__btn");
- 
 
   const actionsIcon = document.createElement("span");
   actionsIcon.classList.add("actions__icon");
@@ -120,7 +124,6 @@ function createPostCard({ title, text, img, likes}) {
   const actionsBtn2 = document.createElement("button");
   actionsBtn2.classList.add("actions__btn2");
 
-
   const actionsIcon2 = document.createElement("span");
   actionsIcon2.classList.add("actions__icon2");
   actionsIcon2.classList.add("actions__icon--dislike");
@@ -135,7 +138,6 @@ function createPostCard({ title, text, img, likes}) {
 
   const actionsBtn3 = document.createElement("button");
   actionsBtn3.classList.add("actions__btn3");
-  
 
   const actionsIcon3 = document.createElement("span");
   actionsIcon3.classList.add("actions__icon3");
@@ -159,3 +161,51 @@ function createPostCard({ title, text, img, likes}) {
   note.append(postImage, postTitle, noteText, noteActions);
   return note;
 }
+
+
+// Задание 1 .....возвращала строку с тегами, которую потом можно будет поставить в документ 
+//  используя innerHTML или insertAdjacentHTML
+
+function createPostCardLineInner(arr) {
+  let markup = '';
+
+  arr.forEach (note => {
+    const html = createPostCardLine(note);
+    markup += html;
+  });
+  // console.log(markup);
+  return markup;
+  
+}
+
+function createPostCardLine({ title, text, img, likes }) {
+  return `
+  <div class="post">
+  <img class="post__image" src=${img}>
+  <h2 class="post__title">${title}</h2>
+  <p class="note__text">${text}</p>
+  <ul
+    class="actions post__actions">
+    <li class="actions__item">
+      <button class="actions__btn">
+        <span class="actions__icon actions__icon--like"></span>
+        <span class="actions__count"></span>
+      </button>
+    </li>
+    <li class="actions__item2">
+      <button class="actions__btn2">
+        <span class="actions__icon2 actions__icon--dislike"></span>
+        <span class="actions__count2">5</span>
+      </button>
+    </li>
+    <li class="actions__item3">
+      <button class="actions__btn3">
+        <span class="actions__icon3 actions__icon--fav"></span>
+        <span class="actions__count3">100</span>
+      </button>
+    </li>
+    </ul>
+</div>
+  `;
+}
+
